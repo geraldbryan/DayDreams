@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('debug_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get('debug_value')=='True')
+DEBUG = False#(os.environ.get('debug_value')=='True')
 
 ALLOWED_HOSTS = ['gerald-firstapp.herokuapp.com'] #deployment url
 
