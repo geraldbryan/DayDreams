@@ -1,0 +1,91 @@
+{% block content %}
+{% load static %}
+    <html>
+        <head>
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            
+            <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+
+            {% if title%}
+                <title> Django Blog - {{title}}</title>
+            {% else %}
+                <title> Django Blog</title>
+            {%endif%}
+        </head>
+        <body>
+            <header class="site-header">
+                <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+                <div class="container">
+                    <a class="navbar-brand mr-4" href="{% url 'blog-landing'%}">Day Dreams!</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                    <div class="navbar-nav mr-auto">
+                        <a class="nav-item nav-link" href="{% url 'blog-menu'%}">Home</a>
+                        <a class="nav-item nav-link" href="{% url 'blog-about'%}">About</a>
+                    </div>
+                    <!-- Navbar Right Side -->
+                    <div class="navbar-nav">
+                        {% if user.is_authenticated %}
+                        <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                        <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                        {% else %}
+                        <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+                </nav>
+            </header>
+            <main>
+                <div class="copy-container col-md-12 text-center w3-cursive">
+                    <h1>Day Dreams!</h1>
+                    <h4> Welcome Home Day Dreamers,</h4>
+                    <p class="col-md-9 w3-cursive" style="margin-left: 170px; text-align: justify;">Write some of your moments each day! Sad moments, Happy moments, or Stressfull moments are all worth to write. Release your emotion and make memory that you can look back after a while. No one will read it except YOU! So, don't worry to spill it out. Your parents can't read it and scold you, your friends can't read it and bully you, and also your boss can't read it and fired you. Let it out, release the emotion from your body, and start a new better life!</p>
+                    <p class="col-md-12 text-muted" style="text-align: center;"> "Everyone should have a form of a DIARY, it's a great release" - Stanley Victor Paskavich</p>
+                    <a class="btn btn-info col-md-2 bg-steel" href="{% url 'login' %}">Login</a>
+                </div>
+                <br>
+                <div class="contents w3-monospace">
+                    <div class="media">
+                        <img class="col-md-6" style="width:480px;height:360px;" src="{% static 'blog/happiness1.png' %}">               
+                        <div>
+                            <h2 class="text-center w3-monospace" style="margin-top: 100px;"> Happy Moments</h2>
+                            <br>
+                            <p style="text-align: center; margin-left: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 25px; font-variant: small-caps;">Share you happy moments and let it bocomes memories that you can embrace it in the future</p>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div>
+                            <h2 class="text-center" style="margin-top: 120px;"> Sad Moments</h2>
+                            <p style="text-align: center; margin-left: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 25px; font-variant: small-caps;">It's okay to be sad, human is so fragile. share your sad moments here and release the sadness from your body! Cheers for the better future! </p>
+                        </div>
+                        <img class="col-md-6 ml-auto" style="width:480px;height:360px;" src="{% static 'blog/sad1.png' %}">               
+                    </div>
+                    <div class="media">
+                        <img class="col-md-6" style="width:480px;height:360px;" src="{% static 'blog/angry.png' %}">               
+                        <div>
+                            <h2 class="text-center" style="margin-top: 100px;"> Angry Moments</h2>
+                            <p style="text-align: center; margin-left: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 25px; font-variant: small-caps;"> LET IT OUT! Dont't let your anger rule you, it is just waste of energy. Remember to write in here and not to anyone while you angry!</p>
+                        </div>
+                    </div>  
+                </div>
+            </main>
+        </body>
+        <footer class="bg-steel text-center text-white" style="position: relative; bottom: 0; width: 100%;">     
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 2, 26, 0.315);">
+              © 2021 Copyright:
+              <a class="text-white" href="https://www.linkedin.com/in/gerald-bryan-6500711a5/">Gerald Bryan</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+    </html>
+{% endblock content%}

@@ -8,9 +8,9 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post
+from .models import Post, Sad, Anger
 
-
+# Happiness Post
 def home(request):
     context = {
         'posts': Post.objects.all()
@@ -75,6 +75,57 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+# Sadness Post
 
+def sad(request):
+    context = {
+        'sad': Sad.objects.all()
+    }
+    return render(request, 'blog/sad.html', context)
+
+class SadListView(ListView):
+    model = Sad
+    template_name = 'blog/sad.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'sad'
+    ordering = ['-date_posted']
+    paginate_by = 5
+
+class SadCreateView(LoginRequiredMixin, CreateView):
+    model = Sad
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+# Stressfull Post
+def anger(request):
+    context = {
+        'anger': Anger.objects.all()
+    }
+    return render(request, 'blog/sad.html', context)
+
+class AngerListView(ListView):
+    model = Anger
+    template_name = 'blog/anger.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'anger'
+    ordering = ['-date_posted']
+    paginate_by = 5
+
+class AngerCreateView(LoginRequiredMixin, CreateView):
+    model = Anger
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+# Not about post
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
+
+def landing(request):
+    return render(request, 'blog/landing.html',{})
+
+def menu(request):
+    return render(request, 'blog/menu.html',{})

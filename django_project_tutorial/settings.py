@@ -26,10 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('debug_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False#(os.environ.get('debug_value')=='True')
+DEBUG = True#(os.environ.get('debug_value')=='True')
 
 ALLOWED_HOSTS = ['gerald-firstapp.herokuapp.com'] #deployment url
-
 
 # Application definition
 
@@ -86,7 +85,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -129,6 +127,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
+IMAGE_URL = '/images/'
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Default primary key field type
@@ -136,7 +136,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'blog-home'
+LOGIN_REDIRECT_URL = 'blog-menu'
 
 LOGIN_URL = 'login'
 
